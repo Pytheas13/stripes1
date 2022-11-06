@@ -1,0 +1,155 @@
+#fond {
+    position: absolute; 
+    height: 100%;
+    width: 100%;
+    background-color: #333333;
+    color: white;
+    margin: 0px;
+    padding-left: 10px;
+    border: 0px;
+}
+
+#container {
+ position: absolute; 
+ background-color: #333333;
+ width: 564px;
+ height: 150px;
+ margin-left: 100px;
+ margin-top: 100px;
+ border: 2px solid;
+ padding:5px;
+ padding-bottom: 4px;
+ 
+border-color: white;
+
+}
+
+#don{
+    position: absolute;
+    background-color: #333333;
+    color : white;
+    font-weight: bold;
+    width: 300px;
+    margin-left: 100px;
+    margin-top: 70px;
+}
+
+#scale {
+position: absolute;
+ background-color: #333333;
+ width: 50px;
+ height : 150px;
+ margin-top: 107px;
+ margin-left : 700px;
+
+}
+
+#axis {
+    position: absolute;
+    background-color: #333333;
+ color: white;
+    width: 600px;
+ height : 50px;
+ margin-top: 265px;
+ margin-left : 95px;
+ padding-top :5px;
+ 
+}
+
+#axis2 {
+    position: absolute;
+    background-color: #333333;
+ color: white;
+    width: 300px;
+ height : 200px;
+ margin-top: 90px;
+ margin-left : 755px;
+ padding-top :5px;
+ 
+}
+
+#trend {
+    position: absolute;
+    background-color: #333333;
+ color: white;
+    width: 400px;
+ height : 50px;
+ margin-top: 310px;
+ margin-left : 55px;
+ padding-top :0px;
+ transition: 0.5s;
+}
+#footer
+{
+    position: absolute;
+    background-color: #333333;
+    color: rgba(255,255,255,0.7);
+    font-size: 12px;
+    font-style: italic ;
+    width: 350px;
+    height : 80px;
+    margin-top: 580px;
+    margin-left : 60px;   
+}
+#map{
+    position: absolute;
+    background-color: #333333;
+    color: white;
+    width: 350px;
+    height : 350px;
+ margin-top: 310px;
+ margin-left : 530px;
+ border: 3px solid;
+border-color: white;
+
+}
+
+#bouton{
+    position: absolute;
+    background-color: #333333;
+ color: white;
+    width: 800px;
+ height : 50px;
+    margin-top: 380px;
+    margin-left : 55px;
+ padding-top :0px;
+ transition: 0.5s;
+ 
+}
+
+
+
+.bouton{
+    background-color: white;
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.5s;
+border: 0;
+font-family: Arial, sans-serif;
+}
+
+.bouton:hover {
+    background-color: rgb(180,0,0);
+    color: white;
+}
+.rectangle {
+    
+    opacity : 1;
+    transition: 0.25s;
+   
+}
+
+.temp{
+    font-size: 12px;
+}
+
+.year {
+    font-size: 12px;
+}
+
+.cpays {
+    transition: 0.5s;
+    opacity: 0.4;
+}

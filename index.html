@@ -28,7 +28,7 @@
 </head>
 
 <body>
-<div id="fond"><h2><b>Stries climatiques</b>&ensp;&ensp;&ensp; <i><small>Interagissez avec les stries, les boutons ou la carte</small> </i></h2></div>
+<div id="titre"><h2><b>Stries climatiques</b>&ensp;&ensp;&ensp; <i><small>Interagissez avec les stries, les boutons ou la carte</small> </i></h2></div>
 <div id="scale"></div>
 <div id="don">
     &ensp; Année : ____ Anomalie : ____ &ensp; &ensp;
@@ -43,14 +43,14 @@
 </div>
 <div id="bouton">
     <button id="world" class="bouton" style="font-size:18px">Terre continentale</button>
-    <br><br><br>
+    <br><br>
     &nbsp;  &nbsp;  &nbsp;&nbsp;  &nbsp;  &nbsp;
     <button id="southa" class="bouton">Afrique du Sud</button>
     &nbsp;  &nbsp;  &nbsp;  &nbsp;&nbsp;  &nbsp;  &nbsp;  &nbsp;
     <button id="algeria" class="bouton">Algérie</button>
     &nbsp;  &nbsp;  &nbsp;  &nbsp;&nbsp;  &nbsp;  &nbsp;  &nbsp;
     <button id="australia" class="bouton">Australie</button>
-    <br><br><br>
+    <br><br>
     &nbsp;  &nbsp;  &nbsp;&nbsp;  &nbsp;  &nbsp;
     &nbsp;  &nbsp;  &nbsp;&nbsp;  &nbsp;  &nbsp;
     <button id="china" class="bouton">Chine</button>
@@ -68,13 +68,13 @@
 </div>
 <script>
 transX = 4;
-transX2 = 1;
+transX2 = 0.5;
 
 clef={"australia":australia,"algeria":algeria,"china":china,"finland":finland,
 "france":france,"southa":southa,"world":world};
 
 width = transX*141;
-height = 150; 
+height = 100; 
 
 const svg = d3.select("#container").append("svg")
     .attr("id", "svg")
@@ -118,7 +118,7 @@ let scalePositive = d3.scaleSequential()
             .attr("x", 0)
             .attr("height", (transX2+1))
             .attr("width", 50)
-            .attr("fill", d => -(j++/world.length*(b-a)-b) > 0 ? 
+            .attr("fill", d => -(j++ /world.length*(b-a)-b) > 0 ? 
             scalePositive(-(j/world.length*(b-a)-b)) : scaleNegative(-(j/world.length*(b-a)-b)));
 
         i=-1;
@@ -173,7 +173,7 @@ var svgaxis2 = d3.select("#axis2")
 
 x = d3.scaleLinear()
     .domain([b, a])         
-    .range([0, 147]);       
+    .range([0, 71]);       
 
 svgaxis2.append("g")
   .attr("transform", "translate(5,12)")      
@@ -181,12 +181,12 @@ svgaxis2.append("g")
 
 svgaxis2.append("text")
     .attr("x",40)
-    .attr("y",40).attr("fill","white")
+    .attr("y",50).attr("fill","white")
     .text("Anomalie (°C)"); 
 
 site="Terre continentale"; trend=world[0].trend;    
 document.getElementById("trend")
-            .innerHTML="<p>Réchauffement depuis 1880 : +"+trend.toFixed(1)+" °C</p>";
+            .innerHTML="Réchauffement depuis 1880 : +"+trend.toFixed(1)+" °C";
 choix="world";
 
 $("#world").css("background-color","blue").css("color","white");
@@ -199,12 +199,12 @@ $(".bouton").on("click", function (){
         trend=clef[this.id][0].trend;    
         $("#trend").css("opacity",0);
         setTimeout(function() {document.getElementById("trend")
-            .innerHTML="<p>Réchauffement depuis 1880 : +"+trend.toFixed(1)+" °C</p>";
+            .innerHTML="Réchauffement depuis 1880 : +"+trend.toFixed(1)+" °C";
             $("#trend").css("opacity",1);},500);
     if (this.id!="world") {
         
         paysmap.getLayer(this.id).setStyle(spayschoix);}
-    if (choix!="world") {paysmap.resetStyle(paysmap.getLayer(choix))};
+    if (choix!="world" && this.id != choix) {paysmap.resetStyle(paysmap.getLayer(choix))};
     choix=this.id;
         //map.flyToBounds(paysmap.getLayer(this.id).getBounds());
     
@@ -273,18 +273,21 @@ var spayshigh ={
   "dashArray" : 1
       };       
 const map = L.map('map',{zoomControl: false,attributionControl: false,
-    zoomSnap: 0.1}).setView([30 , 69.4], 1.9);
+    zoomSnap: 0.2}).setView([30 , 69.4], 1.3);
 
 const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		maxZoom: 19,opacity:0.7,
 		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
+map.dragging.disable();
 map.touchZoom.disable();
 map.doubleClickZoom.disable();
 map.scrollWheelZoom.disable();
 map.boxZoom.disable();
 map.keyboard.disable();
+if (map.tap) map.tap.disable();
+document.getElementById('map').style.cursor='default';
 
 const paysmap=L.geoJSON(pays, {onEachFeature:onEachFeature,
     style: spays

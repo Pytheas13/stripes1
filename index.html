@@ -246,7 +246,15 @@ function onEachFeature(feature, layer) {
         .css("color","white");
         stripes(clef[layer._leaflet_id]);
         choix=layer._leaflet_id;
+        
+    
+       
     };
+    trend=clef[choix][0].trend;    
+    $("#trend").css("opacity",0);
+    setTimeout(function() {document.getElementById("trend")
+        .innerHTML="Réchauffement depuis 1880 : +"+trend.toFixed(1)+" °C";
+    $("#trend").css("opacity",1);},500);
     });
 
 }
